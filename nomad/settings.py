@@ -100,7 +100,7 @@ if DEBUG:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': os.environ.get('POSTGRES_DB', 'nomad'),
             'USER': os.environ.get('POSTGRES_USER', 'postgres'),
-            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'promise2022'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'pass'),
             'HOST': os.environ.get('POSTGRES_HOST', ''),
             'PORT': 5432,
         }
