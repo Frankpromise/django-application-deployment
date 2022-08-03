@@ -32,6 +32,11 @@ stored in the database. We also integrated with with cloudwatch to monitor for m
 
 # HOW TO DEPLOY THE APPLICATION FROM SCRATCH
 
+__PREREQUISITES__
+
+a. AWS account
+b. create an iam profile using this command `aws iam create-user --user-name terraform`
+
  __ARCHITECTURE__
 
 
@@ -39,6 +44,12 @@ stored in the database. We also integrated with with cloudwatch to monitor for m
 
 #### Follow these steps:
 
-`git clone
+1. `git clone git@github.com:Frankpromise/django-application-deployment.git`
+
+2. `cd terraform-aws`
+
+3. `terraform apply --auto-approve` This command will deploy and create the EKS Cluster in AWS.
+
+
 
 
