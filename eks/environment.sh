@@ -1,4 +1,0 @@
-#!bin/bash
-IAM_PROXY_PROMETHEUS_ROLE_ARN=arn:aws:iam::289836653043:role/EKS-AMP-ServiceAccount-Role
-WORKSPACE_ID=ws-b2bfa857-cc67-494a-85bd-65d116911e98
-AWS_REGION=eu-west-2

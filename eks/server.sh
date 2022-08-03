@@ -1,2 +1,0 @@
-#!/bin/bash
- sleep 1m && helm install prometheus-for-amp prometheus-community/prometheus -n prometheus -f eks/amp_ingest_override_values.yaml --set serviceAccounts.server.annotations."eks\.amazonaws\.com/role-arn"="arn:aws:iam::289836653043:policy/AWSManagedPrometheusWriteAccessPolicy" --set server.remoteWrite[0].url="https://aps-workspaces.${AWS_REGION}.amazonaws.com/workspaces/${WORKSPACE_ID}/api/v1/remote_write" --set server.remoteWrite[0].sigv4.region=${AWS_REGION}
