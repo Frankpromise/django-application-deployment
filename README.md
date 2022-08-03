@@ -35,7 +35,8 @@ stored in the database. We also integrated with with cloudwatch to monitor for m
 __PREREQUISITES__
 
 a. AWS account
-b. create an iam profile using this command `aws iam create-user --user-name terraform`
+b. terraform cloud account to store state files.
+c. create an iam profile using this command `aws iam create-user --user-name terraform`
 
  __ARCHITECTURE__
 
@@ -49,6 +50,43 @@ b. create an iam profile using this command `aws iam create-user --user-name ter
 2. `cd terraform-aws`
 
 3. `terraform apply --auto-approve` This command will deploy and create the EKS Cluster in AWS.
+
+
+
+## To work with the cluster
+
+1. `aws eks --region us-east-1 update-kubeconfig --name eks --profile terraform`
+2. follow this https://www.hackerxone.com/2021/08/20/steps-to-install-kubectl-eksctl-on-ubuntu-20-04/ to install kubectl and eksctl
+
+
+## To make application externally accessible
+
+1. Setup a postgresql database in a private subnet and make it privately accessible from the security group of the created worker node.
+
+2. `kubectl apply -f k8s/django.yml` to create a deployment and service
+
+3. `kubectl exec -i -t <pod name> bash` to do some configurations in the container
+
+__inside the container, run the following commands__
+
+a. `pip install -r requirements.txt`
+
+b. `vim nomad/settings` and change the database username and password and host to the one given during the rds creation. Also change the TZ=False. save and exit.
+
+c. `python3 manage.py makemigrations`
+
+d. `python3 manage.py migrate`
+
+e. `python3 manage.py createsuperuser` and exit the container
+
+4. `kubectl exec -i it <pod name> python3 manage.py runserver 0.0.0.0:8000`
+
+5. `kubectl get svc` . copy the DNS and paste in the  browser
+
+
+
+<img width="940" alt="image" src="https://user-images.githubusercontent.com/99150197/182586253-858847a8-9007-46f3-b4aa-a568db7d7f3a.png">
+
 
 
 
