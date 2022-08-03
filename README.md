@@ -88,6 +88,22 @@ e. `python3 manage.py createsuperuser` and exit the container
 <img width="940" alt="image" src="https://user-images.githubusercontent.com/99150197/182586253-858847a8-9007-46f3-b4aa-a568db7d7f3a.png">
 
 
+# MONITORING
+
+1. helm repo add stable https://charts.helm.sh/stable
+
+2. helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+3. kubectl create namespace prometheus
+
+4. helm install prometheus prometheus-community/kube-prometheus-stack -n prometheus
+
+5. edit the prometheus service and change type "clusterrole" to "LoadBalancer"
+
+6.  edit the grafana service and change type to loadbalancer
+
+
+<img width="942" alt="image" src="https://user-images.githubusercontent.com/99150197/182591117-2b6ebc56-e990-4457-b1fc-14fa828f11d3.png">
 
 
 
